@@ -37,6 +37,11 @@ html {
   50% { background-position: 100% center; }
 }
 
+@keyframes cookie-banner-in {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

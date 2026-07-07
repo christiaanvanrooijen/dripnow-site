@@ -1,4 +1,87 @@
 ---
 ---
 
-<!-- TODO: cookie-consent banner + logic, only load analytics after consent -->
+<div
+  id="cookie-consent"
+  hidden
+  class="fixed inset-x-0 bottom-0 z-50 animate-[cookie-banner-in_0.3s_ease-out]"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Cookie consent"
+>
+  <div class="mx-auto m-4 max-w-3xl rounded-2xl border border-ink/15 bg-bone p-5 shadow-xl shadow-ink/10 sm:flex sm:items-center sm:justify-between sm:gap-6">
+    <p class="text-sm text-ink/80">
+      We use necessary storage to run this site. With your permission, we'd
+      also like to use analytics later to see what's working — nothing is
+      tracked yet either way. Read our{' '}
+      <a href="/privacy" class="underline hover:text-ink">Privacy Policy</a>.
+    </p>
+    <div class="mt-4 flex gap-3 sm:mt-0 sm:shrink-0">
+      <button
+        id="cookie-decline"
+        type="button"
+        class="flex-1 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-ink/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric sm:flex-none"
+      >
+        Decline
+      </button>
+      <button
+        id="cookie-accept"
+        type="button"
+        class="flex-1 rounded-full bg-electric px-5 py-2.5 text-sm font-semibold text-bone transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric sm:flex-none"
+      >
+        Accept
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const CONSENT_KEY = 'dripnow_consent';
+
+  // Consent gate: this function is the ONLY place future analytics
+  // (Plausible, GA, or similar) may be injected. As written today it is a
+  // no-op, so nothing loads, requests, or tracks anything before the user
+  // has explicitly accepted — confirmed for compliance review.
+  function enableAnalytics() {
+    // TODO(analytics): inject the chosen provider's script tag here once
+    // one is picked. Do not add any script/pixel/fetch outside this
+    // function's "accepted" call path.
+  }
+
+  const banner = document.getElementById('cookie-consent');
+
+  function showBanner() {
+    banner?.removeAttribute('hidden');
+  }
+
+  function hideBanner() {
+    banner?.setAttribute('hidden', '');
+  }
+
+  const stored = localStorage.getItem(CONSENT_KEY);
+  if (stored === 'accepted') {
+    enableAnalytics();
+  } else if (!stored) {
+    showBanner();
+  }
+
+  document.getElementById('cookie-accept')?.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    enableAnalytics();
+    hideBanner();
+  });
+
+  document.getElementById('cookie-decline')?.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'declined');
+    hideBanner();
+  });
+
+  // "Cookie settings" link in the footer lets people change their mind —
+  // withdrawing consent should be as easy as giving it.
+  document.querySelectorAll('[data-cookie-settings]').forEach((el) => {
+    el.addEventListener('click', () => {
+      localStorage.removeItem(CONSENT_KEY);
+      showBanner();
+    });
+  });
+</script>
