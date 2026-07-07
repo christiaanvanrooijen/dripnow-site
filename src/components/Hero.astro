@@ -1,7 +1,98 @@
 ---
+// TODO(placeholder-images): the outfit/lookbook photos below are cropped from
+// legacy/ prototype assets of unknown commercial license. Replace with owned
+// photography or a properly licensed source (Unsplash/Pexels license) before
+// launch — see CLAUDE.md "Openstaande TODO's" for the same note.
+const uploadPhotos = [
+  { src: '/images/hero-upload-streetwear.webp', alt: 'Black streetwear outfit on a hanger — one of three outfit photos to upload' },
+  { src: '/images/hero-upload-smart-casual.webp', alt: 'Smart-casual outfit in olive and beige on a hanger' },
+  { src: '/images/hero-upload-minimal.webp', alt: 'Minimal beige coat and black trousers outfit on a hanger' },
+];
+
+const lookbookItems = [
+  { src: '/images/hero-lookbook-cap.webp', alt: 'Curated cap from the sample lookbook' },
+  { src: '/images/hero-lookbook-headphones.webp', alt: 'Curated headphones from the sample lookbook' },
+  { src: '/images/hero-lookbook-bag.webp', alt: 'Curated crossbody bag from the sample lookbook' },
+  { src: '/images/hero-lookbook-sneakers.webp', alt: 'Curated sneakers from the sample lookbook' },
+];
 ---
 
-<section id="hero" class="mx-auto max-w-6xl px-4 py-24 text-center">
-  <!-- TODO: badge, kop, subkop, CTA's, 3-foto's-naar-lookbook visual -->
-  <p class="text-sm uppercase tracking-wide text-ink/60">Hero placeholder</p>
+<section id="hero" class="mx-auto max-w-6xl px-4 pt-16 pb-24">
+  <div class="text-center">
+    <span class="inline-flex items-center gap-2 rounded-full border border-ink/15 px-4 py-1.5 text-xs font-medium tracking-wide text-ink/70">
+      <span class="h-1.5 w-1.5 rounded-full bg-signal"></span>
+      Coming soon · EU
+    </span>
+
+    <h1 class="mt-6 font-display text-4xl leading-[1.05] sm:text-5xl md:text-6xl">
+      Your <span class="chrome-text">drip.</span> Decoded.
+    </h1>
+
+    <p class="mx-auto mt-6 max-w-xl text-balance text-base text-ink/70 sm:text-lg">
+      Upload 3 outfit photos. Get your Drip Profile. Shop a lookbook built for
+      how you actually dress — one store, one order, zero friction.
+    </p>
+
+    <div class="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center">
+      <a
+        href="#demo"
+        class="rounded-full bg-electric px-8 py-3.5 text-base font-semibold text-bone transition-transform hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+      >
+        Try the demo
+      </a>
+      <a
+        href="#waitlist"
+        class="rounded-full border border-ink/20 px-8 py-3.5 text-base font-semibold text-ink transition-colors hover:border-ink/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+      >
+        Join waitlist
+      </a>
+    </div>
+  </div>
+
+  <div class="mt-16 grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr_auto_1fr] md:gap-8">
+    <!-- Input: 3 outfit photos -->
+    <div class="flex justify-center gap-3 sm:gap-4">
+      {uploadPhotos.map((photo, i) => (
+        <img
+          src={photo.src}
+          alt={photo.alt}
+          width="220"
+          height="660"
+          loading={i === 0 ? 'eager' : 'lazy'}
+          fetchpriority={i === 0 ? 'high' : 'auto'}
+          class:list={[
+            'h-48 w-auto rounded-xl object-cover shadow-lg shadow-ink/10 sm:h-56',
+            i === 0 && 'rotate-[-4deg]',
+            i === 1 && 'rotate-[2deg]',
+            i === 2 && 'rotate-[-1deg]',
+          ]}
+        />
+      ))}
+    </div>
+
+    <!-- Process: connecting label -->
+    <div class="flex flex-row items-center justify-center gap-2 py-2 text-ink/50 md:flex-col md:py-0">
+      <span aria-hidden="true" class="text-2xl md:rotate-0">→</span>
+      <span class="text-xs font-medium uppercase tracking-wide">AI reads your style</span>
+    </div>
+
+    <!-- Output: sample lookbook grid -->
+    <div class="mx-auto w-full max-w-xs">
+      <div class="grid grid-cols-2 gap-3">
+        {lookbookItems.map((item) => (
+          <img
+            src={item.src}
+            alt={item.alt}
+            width="320"
+            height="320"
+            loading="lazy"
+            class="aspect-square w-full rounded-xl object-cover shadow-lg shadow-ink/10"
+          />
+        ))}
+      </div>
+      <p class="mt-3 text-center text-xs font-medium uppercase tracking-wide text-ink/50">
+        One store · one order
+      </p>
+    </div>
+  </div>
 </section>

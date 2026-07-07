@@ -32,3 +32,6 @@ Responsive tot 360px, zichtbare keyboard-focus, prefers-reduced-motion gerespect
 - Kleine, duidelijke commits met leesbare messages.
 - Bouw in approval-volgorde: eerst het pakket dat Awin nodig heeft (hero, demo, /privacy, /terms, cookie-consent, werkend waitlist-formulier), daarna copy en animaties polijsten.
 - De volledige bouwbrief staat in docs/BRIEF.md — raadpleeg die voor detail.
+
+## Openstaande TODO's
+- **Hero-beeld is placeholder.** De outfit- en lookbook-foto's in `src/components/Hero.astro` (`public/images/hero-*.webp`) zijn crops uit de oude `legacy/`-prototype-assets, met onbekende commerciële licentie. Vervangen door eigen fotografie of correct gelicenseerd materiaal (Unsplash/Pexels-license) vóór livegang — niet gebruiken op de definitieve commerciële site.
