@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DripNow — AI-Powered Personal Styling</title>
+    <meta name="description" content="Send 3 outfit photos. Get your Style DNA. Browse a personalized lookbook with shoppable links — all from one store, one order, zero friction.">
+    <meta name="robots" content="index, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-elevated: #141414;
+            --bg-card: #1a1a1a;
+            --text: #f5f5f5;
+            --text-secondary: #a3a3a3;
+            --text-muted: #666;
+            --accent: #ff4d4d;
+            --accent-glow: rgba(255, 77, 77, 0.3);
+            --gradient-1: #ff4d4d;
+            --gradient-2: #ff8a4d;
+            --gradient-3: #ffd54d;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Noise overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* === NAV === */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(10,10,10,0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-cta {
+            padding: 0.6rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-cta:hover {
+            background: #ff6b6b;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        /* === HERO === */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 50% 0%, var(--accent-glow) 0%, transparent 60%);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 77, 77, 0.1);
+            border: 1px solid rgba(255, 77, 77, 0.3);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge .dot {
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 2.5vw, 1.35rem);
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            color: white;
+            border: none;
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 900px;
+            margin-top: 3rem;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* === HOW IT WORKS === */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .step {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            border-color: rgba(255, 77, 77, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .step-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .step p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* === LOOKBOOK SHOWCASE === */
+        .lookbook {
+            background: var(--bg-elevated);
+            padding: 6rem 2rem;
+        }
+
+        .lookbook-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .lookbook-image {
+            border-radius: 1.25rem;
+            overflow: hidden;
+        }
+
+        .lookbook-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .lookbook-content {
+            padding: 2rem 0;
+        }
+
+        .lookbook-content .section-label {
+            margin-bottom: 1rem;
+        }
+
+        .lookbook-content .section-title {
+            margin-bottom: 1rem;
+        }
+
+        .style-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .style-pill {
+            padding: 0.4rem 1rem;
+            background: rgba(255, 77, 77, 0.1);
+            border: 1px solid rgba(255, 77, 77, 0.25);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        /* === FEATURES === */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .feature {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            border-color: rgba(255, 77, 77, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* === CTA === */
+        .cta-section {
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 50% 50%, var(--accent-glow) 0%, transparent 50%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* === FOOTER === */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .steps { grid-template-columns: 1fr; }
+            .lookbook-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            nav { padding: 1rem 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">DripNow</div>
+        <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+    </nav>
+
+    <section class="hero" id="top">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Coming Soon — EU
+        </div>
+        <h1>Your Style.<br><span class="gradient">Decoded by AI.</span></h1>
+        <p class="hero-sub">Upload 3 outfit photos. Get your Style DNA. Browse a personalized lookbook with shoppable links — all items from one store, one order, zero friction.</p>
+        <div class="hero-cta-group">
+            <a href="#waitlist" class="btn-primary">Get Early Access</a>
+            <a href="#how" class="btn-secondary">See How It Works</a>
+        </div>
+        <div class="hero-image">
+            <img src="lookbook-reference.jpg" alt="Three curated outfit styles — streetwear, smart-casual, and refined minimal" loading="eager">
+        </div>
+    </section>
+
+    <section class="section" id="how">
+        <div class="section-label">How It Works</div>
+        <div class="section-title">Three Steps. Zero Effort.</div>
+        <p class="section-desc">No endless scrolling. No decision fatigue. Just your style, amplified.</p>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <h3>Send 3 Photos</h3>
+                <p>Upload three outfit pics on dripnow.me. That's it. No quizzes, no forms, no boring style profiles.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <h3>Get Your Style DNA</h3>
+                <p>Our AI analyzes your vibe — colors, cuts, layering, energy. Not "what season are you" nonsense. Your actual style, mapped.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <h3>Shop Your Lookbook</h3>
+                <p>A personalized lookbook with shoppable links. Every item matched to your budget. One checkout. Done.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="lookbook" id="lookbook">
+        <div class="lookbook-grid">
+            <div class="lookbook-image">
+                <img src="hero-product.webp" alt="Curated fashion items — streetwear and accessories flat lay" loading="lazy">
+            </div>
+            <div class="lookbook-content">
+                <div class="section-label">Personalized Lookbook</div>
+                <div class="section-title">Not Another Recommendations Page</div>
+                <p class="section-desc">Your lookbook isn't a random feed. It's built from your Style DNA — every piece selected because it fits how you actually dress.</p>
+                <div class="style-pills">
+                    <span class="style-pill">Streetwear</span>
+                    <span class="style-pill">Smart Casual</span>
+                    <span class="style-pill">Minimalist</span>
+                    <span class="style-pill">Layered</span>
+                    <span class="style-pill">Utilitarian</span>
+                    <span class="style-pill">Elevated Basics</span>
+                </div>
+                <a href="#waitlist" class="btn-primary">Join the Waitlist</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="features">
+        <div class="section-label">Why DripNow</div>
+        <div class="section-title">Built Different. Literally.</div>
+
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🧬</div>
+                <h3>Style DNA, Not Categories</h3>
+                <p>We don't put you in a box. Our AI maps the actual patterns in how you dress — colors, proportions, layering instincts.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🛍️</div>
+                <h3>One Store, One Order</h3>
+                <p>Every item in your lookbook comes from a single store. Add to cart once. Checkout once. No hunting across 12 tabs.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Web App, No Download</h3>
+                <p>Works in your browser. Upload photos, get your Style DNA and lookbook — no app store, no downloads. Instant.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Made for EU</h3>
+                <p>Focused on Europe. Local sizing, local shipping, local stores. EU-friendly pricing and delivery. No US-only surprises.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="waitlist">
+        <div class="section-label">Early Access</div>
+        <div class="section-title" style="max-width:600px;margin:0 auto 1rem;">Ready to Find Your Drip?</div>
+        <p class="section-desc" style="text-align:center;margin:0 auto 2.5rem;">Drop your email. We'll let you in when it's time.</p>
+
+        <form id="waitlist-form" style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;max-width:480px;margin:0 auto;">
+            <input type="email" id="email-input" placeholder="your@email.com" required
+                style="flex:1;min-width:200px;padding:1rem 1.5rem;background:var(--bg-card);border:1px solid rgba(255,255,255,0.15);border-radius:100px;color:var(--text);font-family:'Inter',sans-serif;font-size:1rem;outline:none;">
+            <button type="submit" class="btn-primary">Join Waitlist</button>
+        </form>
+        <p id="waitlist-success" style="display:none;color:var(--accent);margin-top:1rem;font-weight:500;">✓ You're on the list. We'll be in touch.</p>
+    </section>
+
+    <footer>
+        <p>© 2025 DripNow — AI-powered personal styling for EU &nbsp;·&nbsp; <a href="mailto:hello@dripnow.me">hello@dripnow.me</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In production, this would POST to an endpoint
+            // For now, show success state
+            document.getElementById('waitlist-form').style.display = 'none';
+            document.getElementById('waitlist-success').style.display = 'block';
+        });
+
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.step, .feature, .lookbook-image, .lookbook-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
