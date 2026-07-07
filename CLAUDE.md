@@ -17,12 +17,12 @@ Landingspagina voor DripNow: je uploadt 3 outfitfoto's, AI maakt een persoonlijk
 - De interactieve demo draait 100% client-side op canned voorbeelddata.
 
 ## Design-tokens
-- bone #F7F5F0 (achtergrond), ink #0B0B0C (tekst)
-- electric #2B2BFF (primaire CTA)
-- chrome-gradient #C9CDD6 → #8A8F9C (liquid-chrome signatuur op het woord "Drip")
-- signal #E8FF3A (alleen kleine badges, spaarzaam)
+- bone #F7F5F0 (achtergrond), ink #0B0B0C (tekst + primaire CTA — fashion-standaard zwarte knoppen, geen blauw accent)
+- greige #A39C8E (warm mid-grijs, voor hairlines/scheidingen en gedempte labels)
+- chrome-gradient #C9CDD6 → #8A8F9C (liquid-chrome signatuur op het woord "Drip", alléén in het loading-moment van de demo)
+- signal #E8FF3A (zeer spaarzaam; niet gebruikt in badges/CTA's, hooguit een toekomstige micro-highlight)
 - Display-font karaktervol/condensed (bv. Clash Display of Anton), body Inter/Geist, self-hosted via Astro (geen externe font-CDN i.v.m. AVG).
-- Signatuur = liquid-chrome "Drip" + demo-onthulling. Rest strak en rustig.
+- Editorial richting (COS/Arket/The Row-gevoel): veel witruimte, zelfverzekerde grote typografie, dunne hairline-scheidingen i.p.v. gevulde kaartjes/pills. Signatuur = liquid-chrome "Drip" + demo-loading. Rest strak en rustig, "minimal maar niet leeg".
 
 ## Kwaliteitsvloer
 Responsive tot 360px, zichtbare keyboard-focus, prefers-reduced-motion gerespecteerd, Lighthouse mobile ≥ 90.
