@@ -10,7 +10,9 @@ Landingspagina voor DripNow: je uploadt 3 outfitfoto's, AI maakt een persoonlijk
 
 ## Stack
 - Astro + Tailwind CSS, output volledig statisch.
-- Hosting: GitHub Pages via GitHub Actions.
+- Hosting: Porkbun Static Hosting, gekoppeld via Porkbun's "GitHub Connect" aan de `deploy`-branch van deze repo (niet `main`). Porkbun's GitHub-koppeling bouwt niets zelf — het synct alleen kant-en-klare bestanden. Daarom pusht `.github/workflows/deploy-porkbun.yml` bij elke push naar `main` de Astro-build-output (`dist/`) naar de `deploy`-branch.
+- Domein `dripnow.me` wordt beheerd bij Porkbun (registrar + hosting in één); geen aparte DNS-koppeling naar GitHub Pages nodig.
+- Er draait ook nog een GitHub Pages-workflow (`.github/workflows/deploy.yml`) die naar de `*.github.io`-URL publiceert — dat is puur een build-preview/staging-omgeving, niet de productiesite.
 - Waitlist: hosted Tally-formulier (geen eigen backend, geen Supabase in deze repo).
 - De interactieve demo draait 100% client-side op canned voorbeelddata.
 
