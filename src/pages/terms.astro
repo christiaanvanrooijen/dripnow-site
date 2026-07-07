@@ -2,13 +2,122 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import ConceptNotice from '../components/ConceptNotice.astro';
 ---
 
-<BaseLayout title="Terms — DripNow">
+<BaseLayout title="Terms — DripNow" description="Terms of service for the DripNow pre-launch waitlist site.">
   <Nav />
   <main class="mx-auto max-w-3xl px-4 py-24">
-    <h1 class="font-display text-4xl">Terms</h1>
-    <!-- TODO: algemene voorwaarden -->
+    <h1 class="font-display text-4xl">Terms of Service</h1>
+    <p class="mt-2 text-sm text-ink/60">Last updated: [PLACEHOLDER — insert date]</p>
+
+    <div class="mt-8">
+      <ConceptNotice />
+    </div>
+
+    <div class="mt-10 space-y-10 text-ink/80 leading-relaxed">
+      <section>
+        <h2 class="font-display text-xl text-ink">1. Who we are</h2>
+        <ul class="mt-3 list-disc space-y-1 pl-5">
+          <li>Company name: [PLACEHOLDER]</li>
+          <li>Registration number (KvK): [PLACEHOLDER]</li>
+          <li>Registered address: [PLACEHOLDER]</li>
+          <li>Contact: <a class="underline hover:text-ink" href="mailto:hello@dripnow.me">hello@dripnow.me</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">2. What DripNow is, today</h2>
+        <p class="mt-3">
+          dripnow.me currently offers: (a) an interactive demo that runs on
+          fixed sample data, and (b) a waitlist you can join for early access.
+          The full product — uploading your own outfit photos to generate a
+          personalised, shoppable lookbook — is not yet live. Nothing on this
+          site should be understood as an offer of that full service;
+          features, availability, and timing may change before launch.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">3. Using the demo</h2>
+        <p class="mt-3">
+          The demo is provided for illustration only. It uses "canned" sample
+          data, not live inventory, live prices, or a real store integration.
+          No purchases can be made through the demo, and no real account or
+          checkout exists yet.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">4. Joining the waitlist</h2>
+        <p class="mt-3">
+          By submitting your email, you ask to be notified about early access.
+          We do not guarantee a specific date, order, or that access will be
+          granted, and we may change or discontinue the waitlist at any time.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">5. Affiliate model</h2>
+        <p class="mt-3">
+          When the full product launches, DripNow will earn a commission on
+          items purchased through links in your lookbook, at no extra cost to
+          you. Commission arrangements with retail partners do not influence
+          the price you pay.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">6. Intellectual property</h2>
+        <p class="mt-3">
+          The DripNow name, logo, and the content of this site (text, design,
+          images used with permission) belong to us or our licensors. You may
+          not copy or reuse them without permission, except as allowed by law.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">7. No warranty, limitation of liability</h2>
+        <p class="mt-3">
+          This website and its demo are provided "as is", without warranties
+          of any kind, express or implied.{' '}
+          <span class="font-semibold">
+            [PLACEHOLDER — a qualified advisor should confirm an appropriate
+            liability limitation clause for your jurisdiction before this is
+            treated as final; consumer-protection law may restrict how far
+            liability can be excluded.]
+          </span>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">8. Changes to the service or these terms</h2>
+        <p class="mt-3">
+          We may change, suspend, or discontinue any part of this site or the
+          future product, and may update these terms as the product develops.
+          Material changes will be reflected in the "Last updated" date above.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">9. Governing law and jurisdiction</h2>
+        <p class="mt-3">
+          <span class="font-semibold">
+            [PLACEHOLDER — confirm governing law, e.g. the laws of the
+            Netherlands, and the competent court, e.g. the competent court in
+            [PLACEHOLDER city].]
+          </span>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">10. Contact</h2>
+        <p class="mt-3">
+          Questions about these terms:{' '}
+          <a class="underline hover:text-ink" href="mailto:hello@dripnow.me">hello@dripnow.me</a>
+        </p>
+      </section>
+    </div>
   </main>
   <Footer />
 </BaseLayout>

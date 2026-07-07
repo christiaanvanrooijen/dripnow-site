@@ -2,13 +2,178 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import ConceptNotice from '../components/ConceptNotice.astro';
 ---
 
-<BaseLayout title="Privacy — DripNow">
+<BaseLayout title="Privacy — DripNow" description="How DripNow collects and uses data on this pre-launch waitlist site.">
   <Nav />
   <main class="mx-auto max-w-3xl px-4 py-24">
-    <h1 class="font-display text-4xl">Privacy</h1>
-    <!-- TODO: privacybeleid conform AVG (welke data, waarvoor, bewaartermijn, rechten, contact, fotoverwerking-statement) -->
+    <h1 class="font-display text-4xl">Privacy Policy</h1>
+    <p class="mt-2 text-sm text-ink/60">Last updated: [PLACEHOLDER — insert date]</p>
+
+    <div class="mt-8">
+      <ConceptNotice />
+    </div>
+
+    <div class="mt-10 space-y-10 text-ink/80 leading-relaxed">
+      <section>
+        <h2 class="font-display text-xl text-ink">1. Who we are</h2>
+        <p class="mt-3">
+          DripNow ("we", "us") operates this website.
+        </p>
+        <ul class="mt-3 list-disc space-y-1 pl-5">
+          <li>Company name: [PLACEHOLDER]</li>
+          <li>Registration number (KvK): [PLACEHOLDER]</li>
+          <li>Registered address: [PLACEHOLDER]</li>
+          <li>Contact: <a class="underline hover:text-ink" href="mailto:hello@dripnow.me">hello@dripnow.me</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">2. What this website currently does</h2>
+        <p class="mt-3">
+          Right now, dripnow.me is a pre-launch waitlist page with an interactive
+          demo. It does not yet offer the full DripNow service (uploading real
+          outfit photos and receiving a personalised lookbook). This policy
+          explains what we collect today, and what we promise for the future
+          service described below.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">3. What data we collect</h2>
+        <ul class="mt-3 list-disc space-y-2 pl-5">
+          <li>Your email address, submitted voluntarily via our waitlist form (hosted by Tally).</li>
+          <li>UTM parameters (e.g. utm_source, utm_medium, utm_campaign) captured when you land on the page, so we know which channel referred you. These are stored together with your email if you sign up; they are not linked to any other identifier.</li>
+          <li>We do not create accounts, use passwords, or collect payment details on this site.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">4. The interactive demo does not use your photos</h2>
+        <p class="mt-3">
+          The "Try the demo" section on this page runs entirely in your browser
+          using fixed sample data. It does not ask for, upload, analyse, or
+          store any photo of you. No camera or file upload is used anywhere on
+          this current site.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">5. Legal basis for processing</h2>
+        <p class="mt-3">
+          We process your email address and UTM data on the basis of your{' '}
+          <strong class="font-semibold text-ink">consent</strong> (Art. 6(1)(a) GDPR),
+          given when you submit the waitlist form. You can withdraw this
+          consent at any time by unsubscribing or by emailing{' '}
+          <a class="underline hover:text-ink" href="mailto:hello@dripnow.me">hello@dripnow.me</a> —
+          this does not affect the lawfulness of processing before withdrawal.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">6. How long we keep your data</h2>
+        <p class="mt-3">
+          We keep your waitlist entry for as long as you remain on the
+          waitlist, and delete it within 30 days of you unsubscribing or
+          asking us to remove it. If we launch the full product and you
+          convert into a user, retention will be governed by the future
+          product's own privacy policy.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">7. Our promise for the future app (not yet live)</h2>
+        <p class="mt-3">
+          The full DripNow product will ask you to upload outfit photos so our
+          AI can build your Drip Profile. When that feature goes live:
+        </p>
+        <p class="mt-3 rounded-lg border border-ink/15 bg-bone px-4 py-3 font-medium text-ink">
+          Photos are analysed to build your profile and then deleted —
+          never stored or shared.
+        </p>
+        <p class="mt-3">
+          We are publishing this commitment now so it is in place before that
+          feature launches.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">8. Who processes data on our behalf</h2>
+        <ul class="mt-3 list-disc space-y-1 pl-5">
+          <li>Tally (tally.so) — hosts and stores waitlist form submissions.</li>
+          <li>Porkbun — hosts this static website.</li>
+          <li>[PLACEHOLDER — add analytics provider here if/when one is enabled, e.g. Plausible or GA4]</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">9. International data transfers</h2>
+        <p class="mt-3">
+          Some of our processors (e.g. Tally, Porkbun) may store or process
+          data outside the European Economic Area.{' '}
+          <span class="font-semibold">
+            [PLACEHOLDER — verify safeguards per processor: confirm whether
+            Tally/Porkbun rely on Standard Contractual Clauses, an adequacy
+            decision, or another Art. 46 GDPR safeguard, and reference the
+            specific mechanism here before launch.]
+          </span>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">10. Affiliate disclosure</h2>
+        <p class="mt-3">
+          DripNow earns a commission on items purchased through links in our
+          (future) lookbooks, at no extra cost to you. This does not affect
+          the data described in this policy.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">11. Your rights</h2>
+        <p class="mt-3">You have the right to:</p>
+        <ul class="mt-3 list-disc space-y-1 pl-5">
+          <li>access the data we hold about you;</li>
+          <li>correct inaccurate data;</li>
+          <li>request deletion;</li>
+          <li>restrict or object to processing; and</li>
+          <li>data portability.</li>
+        </ul>
+        <p class="mt-3">
+          You also have the right to lodge a complaint with your national data
+          protection authority — in the Netherlands, the
+          Autoriteit Persoonsgegevens. To exercise any of these rights, email{' '}
+          <a class="underline hover:text-ink" href="mailto:hello@dripnow.me">hello@dripnow.me</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">12. Cookies</h2>
+        <p class="mt-3">
+          This site uses a cookie-consent banner. We only load non-essential
+          cookies (such as analytics) after you give consent. See the banner
+          on first visit for details of what, if anything, is currently
+          active.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">13. Changes to this policy</h2>
+        <p class="mt-3">
+          We may update this policy as the product develops. Material changes
+          will be reflected in the "Last updated" date above.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl text-ink">14. Contact</h2>
+        <p class="mt-3">
+          Questions about this policy:{' '}
+          <a class="underline hover:text-ink" href="mailto:hello@dripnow.me">hello@dripnow.me</a>
+        </p>
+      </section>
+    </div>
   </main>
   <Footer />
 </BaseLayout>

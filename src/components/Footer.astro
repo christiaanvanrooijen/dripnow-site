@@ -3,6 +3,15 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-ink/10 px-4 py-12 text-center text-sm text-ink/60">
-  <!-- TODO: links (Privacy · Terms · Contact) + affiliate-disclosure -->
-  <p>&copy; {year} DripNow</p>
+  <nav class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+    <a href="/privacy" class="hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric">Privacy</a>
+    <a href="/terms" class="hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric">Terms</a>
+    <a href="mailto:hello@dripnow.me" class="hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric">Contact</a>
+  </nav>
+
+  <p class="mx-auto mt-6 max-w-lg text-xs text-ink/50">
+    DripNow earns a commission on items bought through our links, at no extra cost to you.
+  </p>
+
+  <p class="mt-4">&copy; {year} DripNow</p>
 </footer>
