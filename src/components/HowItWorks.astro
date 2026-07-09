@@ -1,7 +1,35 @@
 ---
+const steps = [
+  {
+    number: '01',
+    name: 'Send 3 photos',
+    copy: 'Upload three outfit pics. No quizzes, no forms.',
+  },
+  {
+    number: '02',
+    name: 'Get your Drip Profile',
+    copy: 'AI maps how you actually dress: colours, cuts, layering, energy.',
+  },
+  {
+    number: '03',
+    name: 'Shop your lookbook',
+    copy: 'A personalised lookbook, matched to your budget. One store. One checkout.',
+  },
+];
 ---
 
-<section id="how-it-works" class="mx-auto max-w-6xl px-4 py-24">
-  <!-- TODO: 3 stappen (01 Send 3 photos / 02 Get your Drip Profile / 03 Shop your lookbook) -->
-  <p class="text-sm uppercase tracking-wide text-ink/60">How it works placeholder</p>
+<section id="how-it-works" class="mx-auto max-w-4xl px-4 py-24 sm:py-32">
+  <p class="text-xs font-semibold uppercase tracking-widest text-ink/50">How it works</p>
+  <h2 class="mt-3 font-display text-4xl sm:text-5xl">Three steps. Zero effort.</h2>
+
+  <div class="mt-14">
+    {steps.map((step) => (
+      <div class="grid grid-cols-1 gap-2 border-t border-greige/40 py-8 sm:grid-cols-[auto_1fr_1fr] sm:items-baseline sm:gap-8 sm:py-10">
+        <span class="text-xs uppercase tracking-widest text-greige">{step.number}</span>
+        <h3 class="font-display text-2xl sm:text-3xl">{step.name}</h3>
+        <p class="text-ink/70 sm:text-right">{step.copy}</p>
+      </div>
+    ))}
+    <div class="border-t border-greige/40"></div>
+  </div>
 </section>
