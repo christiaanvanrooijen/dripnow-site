@@ -22,9 +22,11 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Liquid-chrome signature treatment — reserved for "Drip" and the demo reveal only. */
+/* Liquid-chrome signature treatment — reserved for "Drip" and the demo reveal only.
+   Stops are dark steel with a single bright highlight band, so the word reads as
+   present as the ink text on bone while keeping the metallic glint. */
 .chrome-text {
-  background-image: linear-gradient(115deg, var(--color-chrome-2), var(--color-chrome-1) 45%, var(--color-chrome-2) 70%, var(--color-chrome-1));
+  background-image: linear-gradient(115deg, #2E3036 0%, #7C818C 28%, #C9CDD6 45%, #5A5E68 62%, #2A2C31 100%);
   background-size: 200% auto;
   background-clip: text;
   -webkit-background-clip: text;

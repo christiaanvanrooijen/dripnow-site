@@ -7,6 +7,7 @@ Landingspagina voor DripNow: je uploadt 3 outfitfoto's, AI maakt een persoonlijk
 1. Gebruik NERGENS de term "Style DNA" (bestaand merk). Gebruik altijd "Drip Profile".
 2. De site moet AVG-conform zijn: /privacy, /terms, cookie-consent, en een affiliate-disclosure in de footer.
 3. Verzin geen nep-reviews, nep-aantallen of valse social proof.
+4. DripNow toont uitsluitend kleding (jassen, overhemden, knits, broeken, etc.). GEEN accessoires, geen elektronica, geen tassen, geen petten, geen schoenen — nergens op de site, niet in demo-data, niet in beelden.
 
 ## Stack
 - Astro + Tailwind CSS, output volledig statisch.

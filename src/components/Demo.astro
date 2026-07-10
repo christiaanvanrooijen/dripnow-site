@@ -2,7 +2,7 @@
 import { vibes } from '../lib/demoData';
 ---
 
-<section id="demo" class="mx-auto max-w-6xl px-4 py-24 sm:py-32">
+<section id="demo" class="mx-auto max-w-6xl px-4 pt-24 pb-16 sm:pt-32 sm:pb-20">
   <div class="text-center">
     <p class="text-xs font-semibold uppercase tracking-widest text-ink/50">Try the demo</p>
     <h2 class="mt-3 font-display text-4xl sm:text-5xl">Pick a vibe</h2>
@@ -11,20 +11,24 @@ import { vibes } from '../lib/demoData';
     </p>
   </div>
 
-  <div id="demo-select" class="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8">
+  <div id="demo-select" class="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-3">
     {vibes.map((vibe) => (
       <button
         type="button"
         data-vibe={vibe.id}
-        class="group border-b border-greige/40 pb-6 text-left transition-colors hover:border-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+        class="group flex cursor-pointer flex-col border-t border-greige/40 pt-5 text-left transition-colors hover:border-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
       >
         <div class="flex gap-1">
           {vibe.profile.colors.map((hex) => (
             <span style={`background:${hex}`} class="h-3 w-5" aria-hidden="true" />
           ))}
         </div>
-        <p class="mt-5 font-display text-2xl sm:text-3xl">{vibe.label}</p>
+        <div class="mt-5 flex items-center justify-between gap-2">
+          <p class="font-display text-2xl sm:text-3xl">{vibe.label}</p>
+          <span aria-hidden="true" class="text-xl text-ink/60 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-ink">&rarr;</span>
+        </div>
         <p class="mt-1 text-xs uppercase tracking-widest text-ink/50">{vibe.profile.tags[1]}</p>
+        <span class="mt-4 text-xs uppercase tracking-widest text-ink/40 transition-colors group-hover:text-ink">See the lookbook</span>
       </button>
     ))}
   </div>
